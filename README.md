@@ -10,7 +10,7 @@ Please send your bug reports and feature requests to the [issue tracker] (in sub
 
 ### IntelliJ usage
 
-Fernflower is bundles as in IntelliJ IDEA and is primarily used to show Java code when debugging or navigating through class files.
+Fernflower is bundled with IntelliJ IDEA and is primarily used to decompile and display Java code when debugging or navigating through class files.
 
 ### Command line usage
 
