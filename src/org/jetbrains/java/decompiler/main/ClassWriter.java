@@ -564,16 +564,15 @@ public class ClassWriter {
     }
 
     if (!isAnnotation) {
-      int[] interfaces = cl.getInterfaces();
-      if (interfaces.length > 0) {
-        boolean useSignature = descriptor != null && descriptor.superinterfaces.size() == interfaces.length;
+      int interfaceCount = descriptor != null ? descriptor.superinterfaces.size() : cl.getInterfaces().length;
+      if (interfaceCount > 0) {
         buffer.append(isInterface ? "extends " : "implements ");
-        for (int i = 0; i < interfaces.length; i++) {
+        for (int i = 0; i < interfaceCount; i++) {
           if (i > 0) {
             buffer.append(", ");
           }
           List<TypeAnnotation> superTypeAnnotations = TargetInfo.SupertypeTarget.extract(typeAnnotations, i);
-          buffer.append(ExprProcessor.getCastTypeName(useSignature ? descriptor.superinterfaces.get(i) : new VarType(cl.getInterface(i), true), TypeAnnotationWriteHelper.create(superTypeAnnotations)));
+          buffer.append(ExprProcessor.getCastTypeName(descriptor != null ? descriptor.superinterfaces.get(i) : new VarType(cl.getInterface(i), true), TypeAnnotationWriteHelper.create(superTypeAnnotations)));
         }
         buffer.append(' ');
       }
